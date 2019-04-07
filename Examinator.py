@@ -7,17 +7,6 @@ pergaminho = arq.readlines()
 print(pergaminho)
 
 
-def primeiro_pai(pergaminho):
-    """
-    :param pergaminho: pergaminho a ser lido
-    :return: String com o nome do primeiro pai
-    """
-    lista1 = pergaminho[1]
-    lista2 = lista1.split()
-    x = [lista2[0]]
-    pai = x[0]
-    return pai
-
 def terras(pergaminho):
     """
     :param pergaminho: pergaminho a ser lido
@@ -42,17 +31,33 @@ def sublistas(pergaminho):
     del(x[0])
     return x
 
+def primeiro_pai(sub_pergaminho):
+    """
+    :param pergaminho: sub_pergaminho a ser lido
+    :return: String com o nome do primeiro pai
+    """
+    return sub_pergaminho[0][0]
 
-#extraindo o primeiro pai e a quantidade de terras:
-pai = primeiro_pai(pergaminho)
-terras = terras(pergaminho)
+def contagem(pai,sub_pergaminho):
+    cont = 0
+    for i in range(len(sub_pergaminho)):
+        if pai in sub_pergaminho[i]:
+            cont += 1
+    return cont
+
 
 #extraindo uma listas com sublistas do pergaminho:
 sub_pergaminho = sublistas(pergaminho)
+
+#extraindo o primeiro pai e a quantidade de terras:
+pai = primeiro_pai(sub_pergaminho)
+terras = terras(pergaminho)
+
+
 
 
 print(pai)
 print(terras)
 print(sub_pergaminho)
-print(dict(sub_pergaminho))
+print(contagem(pai,sub_pergaminho))
 
