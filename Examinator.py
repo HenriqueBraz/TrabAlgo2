@@ -27,25 +27,32 @@ def terras(pergaminho):
     return terras
 
 
+#quebrando o pergaminho em pequenas sublistas:
+def sublistas(pergaminho):
+    """
+     Função para quebrar o pergaminho em sublistas de três elementos
+    :param pergaminho: pergaminho a ser "quebrado"
+    :return: retorna uma lista com sublistas, na ordem: pai, filho e quant de terras
+    """
+    x = []
+    y = []
+    for i in range(len(pergaminho)):
+        y.append(pergaminho[i])
+        x.append(y[i].split())
+    del(x[0])
+    return x
+
+
 #extraindo o primeiro pai e a quantidade de terras:
 pai = primeiro_pai(pergaminho)
 terras = terras(pergaminho)
 
+#extraindo uma listas com sublistas do pergaminho:
+sub_pergaminho = sublistas(pergaminho)
 
-#quebrando o pergaminho em pequenas sublistas:
-def sublistas(pergaminho):
-    x = []
-    y = []
-    for i in pergaminho:
-        x += ['']
-    for i in range(len(pergaminho)):
-        y.append(pergaminho[i])
-        x[i] = y[i].split()
-    del(x[0])
-    return x
 
 print(pai)
 print(terras)
-print(sublistas(pergaminho))
-
+print(sub_pergaminho)
+print(dict(sub_pergaminho))
 
