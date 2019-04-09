@@ -46,6 +46,30 @@ def contagem(pai,sub_pergaminho):
     return cont
 
 
+def dic_organizator(sub_pergaminho,contagem,pai):
+    dicionario = {}
+    lista = []
+    count = 0
+    for i in range(len(sub_pergaminho)):
+        if pai not in dicionario.keys():
+            lista2 = []
+            lista2.append(sub_pergaminho[i][1])
+            lista2.append(sub_pergaminho[i][2])
+            dicionario[sub_pergaminho[i][0]] = lista2
+            if count == 0:
+                lista = list(lista2)
+                count = 1
+
+        else:
+            lista.append(sub_pergaminho[i][1])
+            lista.append(sub_pergaminho[i][2])
+            dicionario[pai] = lista
+
+    return dicionario
+
+
+
+
 #extraindo uma listas com sublistas do pergaminho:
 sub_pergaminho = sublistas(pergaminho)
 
@@ -53,11 +77,15 @@ sub_pergaminho = sublistas(pergaminho)
 pai = primeiro_pai(sub_pergaminho)
 terras = terras(pergaminho)
 
-
+#extraindo a contagem para a divisão de terras do primeiro pai
+contagem = (contagem(pai,sub_pergaminho))
 
 
 print(pai)
 print(terras)
 print(sub_pergaminho)
-print(contagem(pai,sub_pergaminho))
+print(contagem)
+
+print(dic_organizator(sub_pergaminho,contagem,pai))
+
 
