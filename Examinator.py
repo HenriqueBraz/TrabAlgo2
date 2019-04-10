@@ -46,24 +46,40 @@ def contagem(pai,sub_pergaminho):
     return cont
 
 
-def dic_organizator(sub_pergaminho,contagem,pai):
+def dic_organizator(sub_pergaminho,pai2):
     dicionario = {}
-    lista = []
+    pai = pai2
     count = 0
-    for i in range(len(sub_pergaminho)):
-        if pai not in dicionario.keys():
-            lista2 = []
-            lista2.append(sub_pergaminho[i][1])
-            lista2.append(sub_pergaminho[i][2])
-            dicionario[sub_pergaminho[i][0]] = lista2
-            if count == 0:
-                lista = list(lista2)
-                count = 1
+    for i in range(15):
+        if pai == sub_pergaminho[i][0] and count == 0:
+            lista = []
+            dicionario[sub_pergaminho[i][0]] = lista
+            dicionario[sub_pergaminho[i][0]].append(sub_pergaminho[i][1])
+            dicionario[sub_pergaminho[i][0]].append(sub_pergaminho[i][2])
+            pai = sub_pergaminho[i][0]
+            print(pai+" do if")
+            dicionario[pai].append('if')
+            count = 1
+
+        elif pai != sub_pergaminho[i][0]:
+            if sub_pergaminho[i][0] in dicionario:
+                dicionario[pai].append(sub_pergaminho[i][1])
+                dicionario[pai].append(sub_pergaminho[i][2])
+                pai = sub_pergaminho[i][0]
+            else:
+                lista = []
+                dicionario[sub_pergaminho[i][0]] = lista
+                dicionario[sub_pergaminho[i][0]].append(sub_pergaminho[i][1])
+                dicionario[sub_pergaminho[i][0]].append(sub_pergaminho[i][2])
+                pai = sub_pergaminho[i][0]
 
         else:
-            lista.append(sub_pergaminho[i][1])
-            lista.append(sub_pergaminho[i][2])
-            dicionario[pai] = lista
+            if pai in dicionario:
+                dicionario[pai].append(sub_pergaminho[i][1])
+                dicionario[pai].append(sub_pergaminho[i][2])
+                pai = sub_pergaminho[i][0]
+                print(pai +" do else")
+                dicionario[pai].append('else')
 
     return dicionario
 
@@ -86,6 +102,6 @@ print(terras)
 print(sub_pergaminho)
 print(contagem)
 
-print(dic_organizator(sub_pergaminho,contagem,pai))
+print(dic_organizator(sub_pergaminho,pai))
 
 
