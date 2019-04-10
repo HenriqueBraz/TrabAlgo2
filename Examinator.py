@@ -2,7 +2,7 @@
 #Trabalho algoritimos 2
 #Python 3.7.0
 
-arq = open('C:\Algo2\TrabAlgo2\casos\casoDev.txt', 'r')
+arq = open('/home/luis/Documentos/pucrs/alest/TrabAlgo2/casos/CasoDev.txt', 'r')
 pergaminho = arq.readlines()
 print(pergaminho)
 
@@ -58,13 +58,13 @@ def dic_organizator(sub_pergaminho,pai2):
             dicionario[sub_pergaminho[i][0]].append(sub_pergaminho[i][2])
             pai = sub_pergaminho[i][0]
             print(pai+" do if")
-            dicionario[pai].append('if')
             count = 1
 
         elif pai != sub_pergaminho[i][0]:
+            print(pai + " do elif")
             if sub_pergaminho[i][0] in dicionario:
-                dicionario[pai].append(sub_pergaminho[i][1])
-                dicionario[pai].append(sub_pergaminho[i][2])
+                dicionario[sub_pergaminho[i][0]].append(sub_pergaminho[i][1])
+                dicionario[sub_pergaminho[i][0]].append(sub_pergaminho[i][2])
                 pai = sub_pergaminho[i][0]
             else:
                 lista = []
@@ -79,7 +79,6 @@ def dic_organizator(sub_pergaminho,pai2):
                 dicionario[pai].append(sub_pergaminho[i][2])
                 pai = sub_pergaminho[i][0]
                 print(pai +" do else")
-                dicionario[pai].append('else')
 
     return dicionario
 
