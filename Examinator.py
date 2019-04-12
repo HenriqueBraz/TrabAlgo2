@@ -1,9 +1,8 @@
-
 #Trabalho algoritimos 2
 #Python 3.7.0
 from math import trunc
 
-arq = open('C:\Algo2\TrabAlgo2\casos\CasoDev.txt', 'r')
+arq = open('/home/henrique/algo2/TrabAlgo2/casos/CasoDev.txt', 'r')
 pergaminho = arq.readlines()
 
 def terras(pergaminho):
@@ -89,23 +88,21 @@ def dicionario_valores_somados(pai,terras2,dicionario):
     terras = terras2
     lista_pais = list(dicionario.keys())
     lista_filhos = list(dicionario.values())
-    print('inicio:')
+    print('***** inicio: ******')
     print(lista_pais)
     print(lista_filhos)
-    x = 1
     contagem = trunc(len(lista_filhos[0])/2)
     valor_para_somar = trunc((int(terras) / int(contagem)))
-    for k, v in dicionario.items():
-        print(k)
-        if k == lista_pais[0]:
-            valor = int(v[x])
-            valor = valor + valor_para_somar
-            v[x] = str(valor)
-            x += 2
-            print('oi'+ str(x))
-
+    x = 0
+    value = len(dicionario[lista_pais[x]])
+    for i in range(1,value,2):
+        valor = int(dicionario[lista_pais[x]][i])
+        valor = valor + valor_para_somar
+        dicionario[lista_pais[x]][i] = str(valor)
+        print('*')
 
     print(dicionario)
+    print(valor_para_somar)
 
 
 
