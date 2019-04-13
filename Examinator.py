@@ -1,6 +1,8 @@
 #Trabalho algoritimos 2
 #Python 3.7.0
 from math import trunc
+import collections
+
 
 arq = open('/home/henrique/algo2/TrabAlgo2/casos/CasoDev.txt', 'r')
 pergaminho = arq.readlines()
@@ -44,6 +46,11 @@ def primeiro_pai(sub_pergaminho):
 
 
 def contagem(pai,sub_pergaminho):
+    """
+    Função que retorna a quantidade de pais no sub_pergaminho
+    :param sub_pergaminho: sub_pergaminho a ser lido
+    :return: Int com o numero de pais
+    """
     cont = 0
     for i in range(len(sub_pergaminho)):
         if pai in sub_pergaminho[i]:
@@ -52,10 +59,16 @@ def contagem(pai,sub_pergaminho):
 
 
 def dic_organizator(sub_pergaminho,pai):
-    dicionario = {}
+    """
+    Função que retorna um dicionario ordenado por ordem de inserção
+    :param pai: nome do primeiro pai
+    :param sub_pergaminho: sub_pergaminho a ser lido
+    :return: class 'collections.OrderedDict
+    """
+    dicionario = collections.OrderedDict()
     count = 0
     for i in range(len(sub_pergaminho)):
-        if pai == sub_pergaminho[i][0] and count == 0:
+        if pai == sub_pergaminho[i-1][0] and count == 0:
             lista = []
             dicionario[sub_pergaminho[i][0]] = lista
             dicionario[sub_pergaminho[i][0]].append(sub_pergaminho[i][1])
@@ -65,48 +78,57 @@ def dic_organizator(sub_pergaminho,pai):
 
         elif pai != sub_pergaminho[i][0]:
             if sub_pergaminho[i][0] in dicionario:
-                dicionario[sub_pergaminho[i][0]].append(sub_pergaminho[i][1])
-                dicionario[sub_pergaminho[i][0]].append(sub_pergaminho[i][2])
                 pai = sub_pergaminho[i][0]
+                dicionario[pai].append(sub_pergaminho[i][1])
+                dicionario[pai].append(sub_pergaminho[i][2])
+                
             else:
                 lista = []
-                dicionario[sub_pergaminho[i][0]] = lista
-                dicionario[sub_pergaminho[i][0]].append(sub_pergaminho[i][1])
-                dicionario[sub_pergaminho[i][0]].append(sub_pergaminho[i][2])
                 pai = sub_pergaminho[i][0]
+                dicionario[pai] = lista
+                dicionario[pai].append(sub_pergaminho[i][1])
+                dicionario[pai].append(sub_pergaminho[i][2])
+                
 
         else:
             if pai in dicionario:
                 dicionario[pai].append(sub_pergaminho[i][1])
                 dicionario[pai].append(sub_pergaminho[i][2])
-                pai = sub_pergaminho[i][0]
-
+                           
     return dicionario
 
 
 def dicionario_valores_somados(pai,terras2,dicionario):
+    """
+    Função que retorna um OrderedDict com os valores das terras dos filhos somados
+    :param pai: nome do primeiro pai
+    :param dicionario: OrderedDict a ser lido
+    :return: class 'collections.OrderedDict
+    """
+    x = 0
+    y = 0
     terras = terras2
     lista_pais = list(dicionario.keys())
     lista_filhos = list(dicionario.values())
     print('***** inicio: ******')
     print(lista_pais)
     print(lista_filhos)
-    contagem = trunc(len(lista_filhos[0])/2)
-    valor_para_somar = trunc((int(terras) / int(contagem)))
-    x = 0
-    value = len(dicionario[lista_pais[x]])
-    for i in range(1,value,2):
-        valor = int(dicionario[lista_pais[x]][i])
-        valor = valor + valor_para_somar
-        dicionario[lista_pais[x]][i] = str(valor)
-        print('*')
+    for i in dicionario.keys():
+        contagem = trunc(len(lista_filhos[x])/2)
+        valor_para_somar = trunc((int(terras) / int(contagem)))
+        value = len(dicionario[lista_pais[y]])
+        for i in range(1,value,2):
+            valor = int(dicionario[lista_pais[y]][i])
+            valor = valor + valor_para_somar
+            dicionario[lista_pais[y]][i] = str(valor)
+            terras = 0
+            x += 1
+            y += 1
+            print('*')
+            
 
     print(dicionario)
     print(valor_para_somar)
-
-
-
-
 
 
 
@@ -124,11 +146,19 @@ contagem = (contagem(pai,sub_pergaminho))
 dicionario = (dic_organizator(sub_pergaminho,pai))
 
 
+#dicionario pronto:
+dicionario_valores_somados(pai,terras,dicionario)
+
+
 print(pai)
+print('\n')
 print(terras)
+print('\n')
 print(contagem)
+print('\n')
 print(sub_pergaminho)
+print('\n')
 print(dicionario)
 
-dicionario_valores_somados(pai,terras,dicionario)
+
 
