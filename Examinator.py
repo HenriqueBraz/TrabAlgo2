@@ -4,7 +4,7 @@ from math import trunc
 import collections
 
 
-arq = open('/home/henrique/algo2/TrabAlgo2/casos/casoMC4a.txt', 'r')
+arq = open('/home/henrique/algo2/TrabAlgo2/casos/casoMC4b.txt', 'r')
 pergaminho = arq.readlines()
 
 def terras(pergaminho):
@@ -108,12 +108,17 @@ def dicionario_valores(pai,terras,dicionario):
    """
    x = 0 
    y = 0
+   z = 0
    count = 0
    pos = 0
    chave = ''
    chave_pai = ''
    lista_pais = list(dicionario.keys())
    lista_filhos = list(dicionario.values())
+   print('\nlista_pais')
+   print(lista_pais)
+   print('\nlista_filhos')
+   print(lista_filhos)
    for i in range(len(lista_pais)):
       contagem = trunc(len(lista_filhos[i])/2)
       if count == 0:
@@ -138,18 +143,19 @@ def dicionario_valores(pai,terras,dicionario):
               if chave in v:
                  chave_pai = k
                   
-          #pegando posição do dicionario
+          #pegando o valor das terras do dicionario
           terras = dicionario[chave_pai][pos]
       x += 1
 
       valor_para_somar = trunc((int(terras) / int(contagem)))
-      value = len(lista_filhos[i])
+      value = len(lista_filhos[z])
       for i in range(1,value,2):
           valor = int(dicionario[lista_pais[y]][i])
           valor = valor + valor_para_somar
           dicionario[lista_pais[y]][i] = str(valor)
           terras = 0
       y += 1
+      z += 1
        
    return dicionario 
      
@@ -178,8 +184,8 @@ print(terras)
 print('\n')
 print('contagem dos filhos do primeiro pai:')
 print(contagem)
-print('\nsub_pergaminho')
-print(sub_pergaminho)
+#print('\nsub_pergaminho')
+#print(sub_pergaminho)
 print('\ndicionario')
 print(dicionario)
 print('\ndicionario_pronto')
