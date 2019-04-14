@@ -4,7 +4,7 @@ from math import trunc
 import collections
 
 
-arq = open('/home/henrique/algo2/TrabAlgo2/casos/CasoDev.txt', 'r')
+arq = open('/home/henrique/algo2/TrabAlgo2/casos/casoMC4a.txt', 'r')
 pergaminho = arq.readlines()
 
 def terras(pergaminho):
@@ -68,7 +68,7 @@ def dic_organizator(sub_pergaminho,pai):
     dicionario = collections.OrderedDict()
     count = 0
     for i in range(len(sub_pergaminho)):
-        if pai == sub_pergaminho[i-1][0] and count == 0:
+        if pai == sub_pergaminho[i][0] and count == 0:
             lista = []
             dicionario[sub_pergaminho[i][0]] = lista
             dicionario[sub_pergaminho[i][0]].append(sub_pergaminho[i][1])
@@ -106,9 +106,12 @@ def dicionario_valores(pai,terras,dicionario):
    :param dicionario: OrderedDict a ser lido
    :return: class 'collections.OrderedDict
    """
+   x = 0 
    y = 0
-   x = 1
    count = 0
+   pos = 0
+   chave = ''
+   chave_pai = ''
    lista_pais = list(dicionario.keys())
    lista_filhos = list(dicionario.values())
    for i in range(len(lista_pais)):
@@ -116,11 +119,29 @@ def dicionario_valores(pai,terras,dicionario):
       if count == 0:
           terras = terras
           count  = 1
+          
       else:
-          pos = (lista_filhos[0].index(lista_pais[x])) #pegando a posição do nome do pai
-          terras = dicionario[lista_pais[0]][pos +1] #pegando posição do dicionario
-          x += 1
-         
+          for i in range(len(lista_filhos)):
+              if lista_pais[x] not in lista_filhos[i]:
+                 
+                  pass
+        
+              else:
+                  #pegando a posição do nome do pai
+                  pos = (lista_filhos[i].index(lista_pais[x]))
+                  pos = pos+1 #(pos == nome, pos +1 == terras)
+                  chave = lista_pais[x]
+                  break
+           
+          #procurando pai da chave:
+          for k,v in dicionario.items():
+              if chave in v:
+                 chave_pai = k
+                  
+          #pegando posição do dicionario
+          terras = dicionario[chave_pai][pos]
+      x += 1
+
       valor_para_somar = trunc((int(terras) / int(contagem)))
       value = len(lista_filhos[i])
       for i in range(1,value,2):
@@ -146,11 +167,10 @@ contagem = (contagem(pai,sub_pergaminho))
 #extraindo o dicionario:
 dicionario = (dic_organizator(sub_pergaminho,pai))
 
-
 #dicionario pronto:
-dicionario = dicionario_valores(pai,terras,dicionario)
+dicionario_pronto = dicionario_valores(pai,terras,dicionario)
 
-print('primeiro pai:')
+print('\nprimeiro pai:')
 print(pai)
 print('\n')
 print('quantidade de terras do primeiro pai:')
@@ -162,6 +182,8 @@ print('\nsub_pergaminho')
 print(sub_pergaminho)
 print('\ndicionario')
 print(dicionario)
+print('\ndicionario_pronto')
+print(dicionario_pronto)
 
 
 
