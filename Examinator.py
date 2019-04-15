@@ -4,7 +4,7 @@ from math import trunc
 import collections
 
 
-arq = open('/home/henrique/algo2/TrabAlgo2/casos/casoMC4b.txt', 'r')
+arq = open('/home/henrique/algo2/TrabAlgo2/casos/casoMC4a.txt', 'r')
 pergaminho = arq.readlines()
 
 def terras(pergaminho):
@@ -115,10 +115,6 @@ def dicionario_valores(pai,terras,dicionario):
    chave_pai = ''
    lista_pais = list(dicionario.keys())
    lista_filhos = list(dicionario.values())
-   print('\nlista_pais')
-   print(lista_pais)
-   print('\nlista_filhos')
-   print(lista_filhos)
    for i in range(len(lista_pais)):
       contagem = trunc(len(lista_filhos[i])/2)
       if count == 0:
@@ -146,7 +142,8 @@ def dicionario_valores(pai,terras,dicionario):
           #pegando o valor das terras do dicionario
           terras = dicionario[chave_pai][pos]
       x += 1
-
+      
+      #percorrendo todos os filhos e atualizando os valores
       valor_para_somar = trunc((int(terras) / int(contagem)))
       value = len(lista_filhos[z])
       for i in range(1,value,2):
@@ -156,8 +153,44 @@ def dicionario_valores(pai,terras,dicionario):
           terras = 0
       y += 1
       z += 1
-       
-   return dicionario 
+      #reinicia o loop do primeiro for 
+   return dicionario
+
+
+
+def busca_guerreiro(dicionario_pronto):
+    
+    lista = []
+    maior = 0
+    filhos = []
+    ocara = ''
+    lista_filhos = list(dicionario_pronto.values())
+    lista_pais = list(dicionario.keys())
+    #obtendo a lista com o máximo  das ultimas gerações    
+    for i in range(len(lista_pais)):
+        value = len(lista_filhos[i])
+        for j in range(1,value,2):
+            lista.append(int(lista_filhos[i][j])) #lista valores, convertidos para inteiros
+            maior = max(lista) # variavel com o maior valor de terras
+            
+    #pegando a lista que contém do valor maior:
+    for k,v in dicionario_pronto.items():
+       if str(maior) in v:
+           filhos = v
+           
+    #pegando o nome do guerreiro
+    for i in range(len(filhos)):
+        if str(maior) in filhos[i]:
+            ocara = filhos[i-1]
+            
+            
+            
+    print('O nome do maior guerreiro é {} e a quantidade de terras é {}'.format(ocara,maior))
+    
+  
+    
+    
+ 
      
 
 #extraindo uma listas com sublistas do pergaminho:
@@ -176,20 +209,9 @@ dicionario = (dic_organizator(sub_pergaminho,pai))
 #dicionario pronto:
 dicionario_pronto = dicionario_valores(pai,terras,dicionario)
 
-print('\nprimeiro pai:')
-print(pai)
-print('\n')
-print('quantidade de terras do primeiro pai:')
-print(terras)
-print('\n')
-print('contagem dos filhos do primeiro pai:')
-print(contagem)
-#print('\nsub_pergaminho')
-#print(sub_pergaminho)
-print('\ndicionario')
-print(dicionario)
-print('\ndicionario_pronto')
-print(dicionario_pronto)
+busca_guerreiro(dicionario_pronto)
+
+
 
 
 
