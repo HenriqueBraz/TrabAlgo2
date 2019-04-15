@@ -2,6 +2,7 @@
 #Python 3.7.0
 from math import trunc
 import collections
+import time
 
 
 arq = open('/home/henrique/algo2/TrabAlgo2/casos/casoMC4a.txt', 'r')
@@ -187,12 +188,12 @@ def busca_guerreiro(dicionario_pronto):
     return '\nO filho com maior quantidade de terras é o {} ({})\n'.format(ocara,maior)
     
   
-    
+   
     
  
 if __name__ == "__main__":
          
-
+    inicio=time.time()
     #extraindo uma listas com sublistas do pergaminho:
     sub_pergaminho = sublistas(pergaminho)
 
@@ -210,6 +211,10 @@ if __name__ == "__main__":
     dicionario_pronto = dicionario_valores(pai,terras,dicionario)
 
     print(busca_guerreiro(dicionario_pronto))
+    
+    fim=time.time()
+    
+    print("nTempo total: {}".format(fim-inicio))
 
 
 
