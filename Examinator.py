@@ -184,32 +184,32 @@ def busca_guerreiro(dicionario_pronto):
             ocara = filhos[i-1]
             
             
-            
-    print('O nome do maior guerreiro é {} e a quantidade de terras é {}'.format(ocara,maior))
+    return '\nO filho com maior quantidade de terras é o {} ({})\n'.format(ocara,maior)
     
   
     
     
  
-     
+if __name__ == "__main__":
+         
 
-#extraindo uma listas com sublistas do pergaminho:
-sub_pergaminho = sublistas(pergaminho)
+    #extraindo uma listas com sublistas do pergaminho:
+    sub_pergaminho = sublistas(pergaminho)
 
-#extraindo o primeiro pai e a quantidade de terras:
-pai = primeiro_pai(sub_pergaminho)
-terras = terras(pergaminho)
+    #extraindo o primeiro pai e a quantidade de terras:
+    pai = primeiro_pai(sub_pergaminho)
+    terras = terras(pergaminho)
 
-#extraindo a contagem para a divisão de terras do primeiro pai
-contagem = (contagem(pai,sub_pergaminho))
+    #extraindo a contagem para a divisão de terras do primeiro pai
+    contagem = (contagem(pai,sub_pergaminho))
 
-#extraindo o dicionario:
-dicionario = (dic_organizator(sub_pergaminho,pai))
+    #extraindo o dicionario:
+    dicionario = (dic_organizator(sub_pergaminho,pai))
 
-#dicionario pronto:
-dicionario_pronto = dicionario_valores(pai,terras,dicionario)
+    #dicionario pronto:
+    dicionario_pronto = dicionario_valores(pai,terras,dicionario)
 
-busca_guerreiro(dicionario_pronto)
+    print(busca_guerreiro(dicionario_pronto))
 
 
 
