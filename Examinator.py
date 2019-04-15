@@ -5,7 +5,7 @@ import collections
 import time
 
 
-arq = open('/home/henrique/algo2/TrabAlgo2/casos/casoMC12b.txt', 'r')
+arq = open('/home/henrique/algo2/TrabAlgo2/casos/casoMC12a.txt', 'r')
 pergaminho = arq.readlines()
 
 def terras(pergaminho):
@@ -212,11 +212,11 @@ if __name__ == "__main__":
 
     print(busca_guerreiro(dicionario_pronto))
     
-    print("Quantidade inicial {}".format(terras))
+    print("Quantidade inicial: {}".format(terras))
     
     fim=time.time()
     
-    print("Tempo total: {} milissegundos".format(fim-inicio))
+    print("Tempo total: {} segundos".format(fim-inicio))
 
 
 
