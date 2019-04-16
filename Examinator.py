@@ -199,7 +199,7 @@ if __name__ == "__main__":
          
     inicio=time.time()
 
-    pergaminho = leitura_pergaminho('C:/Users/Luizfwc/Desktop/alest2/TrabAlgo2/casos/casoMC14b.txt')
+    pergaminho = leitura_pergaminho('/home/henrique/algo2/TrabAlgo2/casos/casoMC14a.txt')
 
     #extraindo uma listas com sublistas do pergaminho:
     sub_pergaminho = sublistas(pergaminho)
