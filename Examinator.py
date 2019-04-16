@@ -163,28 +163,30 @@ def dicionario_valores(pai,terras,dicionario):
 
 def busca_guerreiro(dicionario_pronto):
     
-    lista = []
     maior = 0
-    filhos = []
+    maiorTmp = 0
+    ultimos = []
     ocara = ''
     lista_filhos = list(dicionario_pronto.values())
     lista_pais = list(dicionario.keys())
-    #obtendo a lista com o máximo  das ultimas gerações    
-    for i in range(len(lista_pais)):
-        value = len(lista_filhos[i])
-        for j in range(1,value,2):
-            lista.append(int(lista_filhos[i][j])) #lista valores, convertidos para inteiros
-            maior = max(lista) # variavel com o maior valor de terras
-            
-    #pegando a lista que contém do valor maior:
-    for k,v in dicionario_pronto.items():
-       if str(maior) in v:
-           filhos = v
-           
-    #pegando o nome do guerreiro
-    for i in range(len(filhos)):
-        if str(maior) in filhos[i]:
-            ocara = filhos[i-1]
+
+    for i in range(len(lista_filhos)):
+        filho = lista_filhos[i]
+        for j in range(len(filho)-1):
+            if(filho[j] not in lista_pais):
+                if(j % 2 == 0):
+                    ultimos.append(filho[j])
+                    ultimos.append(filho[j+1])
+
+
+    for h in range(len(ultimos)):
+        if(h % 2 != 0):
+            maiorTmp = int(ultimos[h])
+        if(maiorTmp > maior):
+            maior = maiorTmp
+            ocara = ultimos[h-1]
+
+
             
             
     return '\nO filho com maior quantidade de terras é o {} ({})\n'.format(ocara,maior)
@@ -197,7 +199,7 @@ if __name__ == "__main__":
          
     inicio=time.time()
 
-    pergaminho = leitura_pergaminho('/home/henrique/algo2/TrabAlgo2/casos/casoMC10a.txt')
+    pergaminho = leitura_pergaminho('C:/Users/Luizfwc/Desktop/alest2/TrabAlgo2/casos/casoMC14b.txt')
 
     #extraindo uma listas com sublistas do pergaminho:
     sub_pergaminho = sublistas(pergaminho)
