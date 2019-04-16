@@ -5,8 +5,10 @@ import collections
 import time
 
 
-arq = open('/home/henrique/algo2/TrabAlgo2/casos/casoMC10a.txt', 'r')
-pergaminho = arq.readlines()
+def leitura_pergaminho(arquivo):
+    arq = open(arquivo, 'r')
+    pergaminho = arq.readlines()
+    return pergaminho
 
 def terras(pergaminho):
     """
@@ -194,6 +196,9 @@ def busca_guerreiro(dicionario_pronto):
 if __name__ == "__main__":
          
     inicio=time.time()
+
+    pergaminho = leitura_pergaminho('/home/henrique/algo2/TrabAlgo2/casos/casoMC10a.txt')
+
     #extraindo uma listas com sublistas do pergaminho:
     sub_pergaminho = sublistas(pergaminho)
 
